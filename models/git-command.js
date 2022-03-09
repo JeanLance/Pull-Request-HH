@@ -10,10 +10,21 @@ class GitCommand {
     }
 
     //Command: git status
-    status(){        
-        /*
-            Create logic here and run unit testing.
-        */
+    status(){
+        let status   = "";
+        let changes  = this.staging.length;
+
+        status += `You have ${changes} change/s.\n`;
+
+        for (let i = 0; i < changes; i++) {
+            status += `${this.staging[i].location}/${this.staging[i].name}`;
+
+            // Move to next line when there's another changes
+            if (this.staging[i+1]) {
+                status += '\n';
+            }
+        }
+        return status;
     }
 
     //Command: git add <filename/file directory/wildcard> 
